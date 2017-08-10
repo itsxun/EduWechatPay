@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 属性配置 -->
+    <property name="myname" value="EduWechatPay"/>
+    <!-- Slf4j支持对象拼装方式:log.info("输出:V1={},V2={}","A","B"),输出:V1=A,V2=B -->
+    <appender name="RootFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <file>${catalina.base:-logs}/logback.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${catalina.base:-mylogs}/webapps/${myname}/logback.log.%i.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>9</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>30MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] [%c:%t-%L] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 控制台输出 -->
+    <appender name="RootConsoleAppender"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- 输出等级：info,warn,error中的一个 -->
+            <level>info</level>
+        </filter>
+        <!-- encoder替换了以前的layout,指定编码，输出模板 -->
+        <encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %p %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root>
+        <level value="info"/>
+        <appender-ref ref="RootFileAppender"/>
+        <appender-ref ref="RootConsoleAppender"/>
+    </root>
+</configuration>
