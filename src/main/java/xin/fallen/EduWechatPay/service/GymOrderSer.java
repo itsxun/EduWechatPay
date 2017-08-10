@@ -1,10 +1,10 @@
-package xin.fallen.EduWechatPay.Service;
+package xin.fallen.EduWechatPay.service;
 
 import com.github.wxpay.sdk.WXPayUtil;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xin.fallen.EduWechatPay.Config.GlobalConfig;
+import xin.fallen.EduWechatPay.config.GlobalConfig;
 import xin.fallen.EduWechatPay.po.OrderInitParams;
 import xin.fallen.EduWechatPay.util.HttpUtil;
 import xin.fallen.EduWechatPay.util.XstreamUtil;
@@ -25,7 +25,7 @@ public class GymOrderSer {
 
     private static BlockingDeque<PassiveOrderPayRes> WECHAT_PAY_RES_REGET = new LinkedBlockingDeque<>();
 
-    public static BlockingDeque<InitiativeOrderPayRes> NOTIFY_QUEUE = new LinkedBlockingDeque<>();
+    private static BlockingDeque<InitiativeOrderPayRes> NOTIFY_QUEUE = new LinkedBlockingDeque<>();
 
     public static OrderInfo getOrderInfo(String orderId) {
         String addr = GlobalConfig.ORDER_FEE_API.replace("{LSH}", orderId);
@@ -57,8 +57,7 @@ public class GymOrderSer {
         params.setNonceStr(WXPayUtil.generateNonceStr());
         params.setBody(orderInfo.getOrderDesc());
         params.setOpenid(orderInfo.getOpenid());
-//        params.setTotalFee(String.valueOf(orderInfo.getFee()));
-        params.setTotalFee(1 + "");
+        params.setTotalFee(String.valueOf(orderInfo.getFee()));
         params.setSpbillCreateIp(ip);
         params.setOutTradeNo(orderInfo.getOrderId());
         params.setNotifyUrl(GlobalConfig.PAY_NOTIFY_ADDR);

@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import xin.fallen.EduWechatPay.Config.GlobalConfig;
+import xin.fallen.EduWechatPay.config.GlobalConfig;
 import xin.fallen.EduWechatPay.util.ConfigLoader;
 import xin.fallen.EduWechatPay.util.FileFinder;
 
@@ -21,6 +21,6 @@ public class SpringReadyLis implements ApplicationListener<ContextRefreshedEvent
         ConfigLoader.load(FileFinder.find("config.xml"), GlobalConfig.class);
 //        File file = new File("C:\\Users\\itsxu\\Desktop\\EduWechatPay\\src\\main\\resources\\config.xml");
 //        ConfigLoader.load(file, GlobalConfig.class);
-        log.info("SpringReadyLis：Config Load Complete");
+        log.info("SpringReadyLis：config Load Complete");
     }
 }

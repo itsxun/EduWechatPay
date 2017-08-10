@@ -3,7 +3,7 @@ package xin.fallen.EduWechatPay.vo;
 import com.github.wxpay.sdk.WXPayUtil;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import xin.fallen.EduWechatPay.Config.GlobalConfig;
+import xin.fallen.EduWechatPay.config.GlobalConfig;
 
 /**
  * Author: Fallen

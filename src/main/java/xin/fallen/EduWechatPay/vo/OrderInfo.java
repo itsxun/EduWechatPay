@@ -13,7 +13,7 @@ public class OrderInfo {
     private String orderDesc;
 
     public int getFee() {
-        return fee;
+        return fee < 0 ? 0 : fee;
     }
 
     public void setFee(int fee) {
